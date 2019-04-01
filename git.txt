@@ -1,0 +1,4 @@
+git config --global user.name "Javier Islas"
+git config --global user.mail javier.i@inspireinnovations.com
+
+git config --list
