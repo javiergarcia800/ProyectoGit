@@ -38,6 +38,10 @@ git diff
 git diff --staged
 git diff --cached
 
+# Remueve un archivo del working directory y del Staging Area.
+git rm *.txt
+
+
 # Mostrar el estatus de los archivos en el repositorio local con flags cortos.
 # Los flags regresan en 2 columns: En Stage y en Working Directory.
 git status -s
