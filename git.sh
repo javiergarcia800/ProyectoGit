@@ -157,3 +157,12 @@ git config --global alias.ci commit
 
 # Cambiar entre branches cambia los archivos en su directorio local,
 # al ultimo commit del branch.
+
+# Crear un nuevo branch y cambiar a ese branch.
+git checkout -b nuevo_branch
+
+# Mostrar el historial de los branches.
+git log --oneline --decorate --graph --all
+
+# Eliminar un branch
+git branch -d nombre_del_branch_a_eliminar
