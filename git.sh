@@ -154,3 +154,6 @@ git push origin --delete <tagname>
 
 # Crear un alias "ci"  para commit.
 git config --global alias.ci commit
+
+# Cambiar entre branches cambia los archivos en su directorio local,
+# al ultimo commit del branch.
