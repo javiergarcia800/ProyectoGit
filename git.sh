@@ -80,6 +80,8 @@ git log -p
 # Mostrar el historial de commits con los cambios en cada commit (Solo 2 commits).
 git log -p -2
 
+# Mostrar el historial de commits en una linea.
+git log --pretty=oneline
 
 # *****************
 # REMOTES
@@ -115,3 +117,40 @@ git remote rename nombre_anterio nombre_nuevo
 
 # Para remover un repositorio remoto.
 git remote remove <shorename>
+
+
+# ***************+
+# TAGS
+# ****************
+# Existen los tags lightweight y annotated.
+# lightweight Son solo apuntadores a un commit en especifico.
+# annotated Se crean objetos en la base de datos de GIT y guardan un nombre_nuevo
+# emakl y fecha.
+
+# Listar los
+# -l "v1.8..5" Listar tags que contengan un nombre especifico.
+git tag
+
+# (Annotated Tag) Para crear un tag.
+git tag -a v1.4 -m "Mensaje"
+
+# (Lightweight) Para crear un tag no se agregan: -a, -m, -s.
+git tag v1.4-lw
+
+# Para tag un commit pasado, para mostrar checksums (git log --pretty=oneline).
+git tag -a v1.2 parte_del_checksum_del_commit
+
+# Enviar un tag a un repositorio remoto.
+git push origin <tagname>
+
+# Enviar todos los tags que no esten en el repositirio remoto.
+git push origin --tags
+
+# Eliminar un tag del repositorio local.
+git tag -d v1.4
+
+# Elimina un tag del repositorio remoto.
+git push origin --delete <tagname>
+
+# Crear un alias "ci"  para commit.
+git config --global alias.ci commit
