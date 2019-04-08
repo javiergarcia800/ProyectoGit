@@ -181,6 +181,10 @@ git log --oneline --decorate
 # Para cambiar a otro branch, con este comando el HEAD apunta al nuevo branch.
 git checkout nombre_del_branch
 
+# Si el nombre_del_branch no existe en local pero si en remoto,
+# Se crea un branch "TRACKING BRANCH" del branch remoto.
+git checkout nombre_del_branch_remoto
+
 # Cambiar entre branches cambia los archivos en su directorio local,
 # al ultimo commit del branch.
 
@@ -205,6 +209,12 @@ git branch
 # Para ver el ultimo commit de cada branch.
 git branch -v
 
+# Para ver los branch locales y como estan en relacion a los branches remotos.
+# ahead => Muestra los commit locales que no se han subido al remoto.
+# behind => Muestra commits remotos que no se han bajado.
+# Esta informacion solo es local, para actualizar esta informacion es necesario hacer: git fetch --all; git branch -vv
+git branch -vv
+
 # Para ver los branches que se han hecho merge y aun no se han hecho merge.
 git branch --merged
 git branch --no-merged
@@ -212,3 +222,24 @@ git branch --no-merged
 # ****************
 # Remote Branches
 # ****************
+
+# Para sincronizar con un repositorio remoto.
+# Esto solo recupera los cambios del repositorio remoto a la rama (origin/master) pero el directorio local
+# not tiene cambios(master).
+git fetch repositorio_remoto(origin)
+
+# Para poner los cambios remotos (git fetch) en el directorio local.
+git merge reposotorio_remoto/branch_remoto
+
+# Si se quiere crear un branch local como el branch del repositorio remoto.
+git checkout -b nombre_branch_local repositorio_remoto/branch_remoto
+
+# Para subir cambios locales a un repositirio/branch remoto.
+git push repositorio_remoto branch(master)
+
+# Para subir cambios locales a un repositorio remoto si los branches(local y remoto se llaman diferente).
+# Esto crea un "TRACING BRANCH".
+git push repositirio_remoto branch_local:branch_remoto
+
+# En un TRACKING BRANCH, GIT sabe de que server trae los datos y hace merge.
+git pull
