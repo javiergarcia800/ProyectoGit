@@ -195,4 +195,20 @@ git branch -d nombre_del_branch_a_eliminar
 
 # Hacer merge de 2 branches, el merge se hace en el branch actual.
 # Cuando se hace merge de 2 branches distintos, se crea un nuevo commit (merge commit).
+# Si hay conflictos en el merge, se tienen que resolver, hacer git add y commit para terminar el merge.
+# Para ver los archivos en conflicto (unmerge): git status.
 git merge nombre_del_otro_branch
+
+# Mostrar los branches y el branch actual (el branch al que apunta el HEAD).
+git branch
+
+# Para ver el ultimo commit de cada branch.
+git branch -v
+
+# Para ver los branches que se han hecho merge y aun no se han hecho merge.
+git branch --merged
+git branch --no-merged
+
+# ****************
+# Remote Branches
+# ****************
