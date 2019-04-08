@@ -166,3 +166,6 @@ git log --oneline --decorate --graph --all
 
 # Eliminar un branch
 git branch -d nombre_del_branch_a_eliminar
+
+# Hacer merge de 2 branches, el merge se hace en el branch actual.
+git merge nombre_del_otro_branch
