@@ -154,3 +154,29 @@ git push origin --delete <tagname>
 
 # Crear un alias "ci"  para commit.
 git config --global alias.ci commit
+
+# ****************
+# BRANCHING
+# ****************
+
+# Cuando se hace un commit se crean los siguientes objetos:
+# 1.- Archivos "blob" con el contenido del archivo que se incluye en el commit.
+# 2.- Archivo "Tree" con apuntadores a cada blob del commit.
+# 3.- Archivo "Commit" con el apuntador al "Tree" y la metadata del commit.
+
+# HEAD es un apuntador al branch que esta actualmente (master).
+
+# El apuntador "HEAD" apunta al apuntador "master",
+# el apuntador "master" apunta al ultimo commit,
+# el ultimo commit apunta al commit previo.
+
+# Cuando se crea un nuevo branch se crea un nuevo apuntador al commit actual del branch actual (master).
+
+# Crear un branch.
+git branch nombre_del_branch
+
+# Para ver los branches y donde apunta el HEAD.
+git log --oneline --decorate
+
+# Para cambiar a otro branch, con este comando el HEAD apunta al nuevo branch.
+git checkout nombre_del_branch
