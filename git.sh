@@ -201,6 +201,7 @@ git branch -d nombre_del_branch_a_eliminar
 # Cuando se hace merge de 2 branches distintos, se crea un nuevo commit (merge commit).
 # Si hay conflictos en el merge, se tienen que resolver, hacer git add y commit para terminar el merge.
 # Para ver los archivos en conflicto (unmerge): git status.
+# El merge se basa en los ultmos commits de cada branch y el ultimo commit comun.
 git merge nombre_del_otro_branch
 
 # Mostrar los branches y el branch actual (el branch al que apunta el HEAD).
@@ -224,8 +225,9 @@ git branch --no-merged
 # ****************
 
 # Para sincronizar con un repositorio remoto.
-# Esto solo recupera los cambios del repositorio remoto a la rama (origin/master) pero el directorio local
-# not tiene cambios(master).
+# Esto solo recupera los cambios del repositorio remoto a la rama (origin/master),
+# pero fectch no modifica el direcotrio local, solo obtiene los datos pero es
+# necesario hacer el merge.
 git fetch repositorio_remoto(origin)
 
 # Para poner los cambios remotos (git fetch) en el directorio local.
@@ -234,12 +236,42 @@ git merge reposotorio_remoto/branch_remoto
 # Si se quiere crear un branch local como el branch del repositorio remoto.
 git checkout -b nombre_branch_local repositorio_remoto/branch_remoto
 
+# Eliminar un branch del repositirio remoto.
+git push origin --delete nombre_del_branch_a_eliminar
+
+# ******************
+# PUSH
+# ******************
 # Para subir cambios locales a un repositirio/branch remoto.
 git push repositorio_remoto branch(master)
 
 # Para subir cambios locales a un repositorio remoto si los branches(local y remoto se llaman diferente).
 # Esto crea un "TRACING BRANCH".
+# El TRACKING BRANCH se puede setear explicitamente o al hacer un clone o checkout de un branch que no existia localmente.
 git push repositirio_remoto branch_local:branch_remoto
 
+# ************+
+# PULL
+# ************
 # En un TRACKING BRANCH, GIT sabe de que server trae los datos y hace merge.
 git pull
+
+# Hacer un git fetch seguido por un git merge.
+# Generalmente es mejor usar fetch y merge explicitamnte, git pull puede ser confuso.
+git pull
+
+
+# ****************
+# REBASE
+# ****************
+# rebase => Cuando se tienen 2 branch, desde un branch se hace REBASE
+# para pasar los cambios de ese branch al final del otro branch y hacer un commit.
+# Rebase tiene el mismo resultado que merge pero el historial se ve como lineal
+# no como en el merge que se en paralelo.
+# Despues de hacer el rebase, el branch master puede hacer un fast-forward merge
+# Para tener los 2 branches apuntando al ultimo commit.
+# NO SE DEBE HACER REBASE EN BRANCHES QUE SE COMPARTEN, SOLO EN BRANCHES LOCALES.
+git rebase master
+
+# Copiar los cambios del branch server al final del branch master y hacer un commit.
+git rebase master server
