@@ -99,6 +99,20 @@ git remote add <shortname> https://
 # Mostrar informacion de un repositorio remoto.
 git remote show origin
 
+# *************
+# FORK
+# *************
+# En la pagina del proyecto original se da click en "Fork",
+# eso crea un repositorio remoto al cual se pueden subir los cambios.
+git remote add myfork https://
+git push -u myfork branch_local
+
+# Despues de subir los cambios al repositorio remoto forked,
+# Se hace un "pull request" mediante web o mediante commandos.
+# Con es sigueinte comando se obtiene informacion para enviar el pull request.
+git request-pull origin/master myfork
+
+
 # Para obtener datos desde un repositorio remote.
 git fetch <shorname>    # Nombre del repositorio remoto.
 
@@ -109,6 +123,8 @@ git pull
 # Enviar datos al repositorio remoto.
 # Si alguien mas ha subido cambios antes del push,
 # es necesario hacer fetch e incorporar cambios antes del push.
+# Si el push falla porque alguien subio otros cambios,
+# primero se debe hacer fetch y merge localmente antes de hacer el push.
 git push <shorname> <branch>
 
 
@@ -194,6 +210,9 @@ git checkout -b nuevo_branch
 # Mostrar el historial de los branches.
 git log --oneline --decorate --graph --all
 
+# Para mostrar los commits desde la version branch local hasta el branch remoto.
+git log branch_local..origin/branch_remoto
+
 # Eliminar un branch
 git branch -d nombre_del_branch_a_eliminar
 
@@ -239,6 +258,10 @@ git checkout -b nombre_branch_local repositorio_remoto/branch_remoto
 # Eliminar un branch del repositirio remoto.
 git push origin --delete nombre_del_branch_a_eliminar
 
+# Para enviar cambios de un branch local a otro branch remoto "refspec".
+# -u es --set-upstream, lo cual configura el branch para pushing y pulling despues.
+git push -u origin branch_local:branch_destino_remoto
+
 # ******************
 # PUSH
 # ******************
@@ -249,6 +272,9 @@ git push repositorio_remoto branch(master)
 # Esto crea un "TRACING BRANCH".
 # El TRACKING BRANCH se puede setear explicitamente o al hacer un clone o checkout de un branch que no existia localmente.
 git push repositirio_remoto branch_local:branch_remoto
+
+# Para subir un branch al repositorio remoto(origin)
+git push -u origin featureA
 
 # ************+
 # PULL
@@ -275,3 +301,22 @@ git rebase master
 
 # Copiar los cambios del branch server al final del branch master y hacer un commit.
 git rebase master server
+
+
+# Generar un patch, compando el ultimo commit local vs el branch remoto.
+# Esto crea archivos .patch con los cambios para ser aplicados en el repositorio remoto.
+git format-patch .M origin/branch_remoto
+
+# Aplicar un patch
+# Esto no crea un commit, se debe pasar a stage y hacer commit.
+# git apply se deberia usar solo para legacy patch, para nuevo patch
+# se debe usar format-patch para generar el path y git am para aplicar el patch.
+git apply /tmp/a___.patch
+
+# Para aplicar un patch de un archivo generado con git format-parte_del_checksum_del_commit
+# Este comando creara un commit.
+git am 0001-limit-----.patch
+
+# Si el comando git am marca conflicto se debe solucionar el conflicto, pasar el archivo a stage y
+# ejecutar git am --resovled
+git am --resolved
