@@ -43,6 +43,9 @@ git diff
 git diff --staged
 git diff --cached
 
+# Mostrar los cambios que no estan en el branch master.
+git diff master
+
 # Remueve un archivo del working directory y del Staging Area.
 # Tambien se puede eliminar el archivo del working Directory
 # y ejecutar el comando: git add para pasar el cambio al Stage.
@@ -134,6 +137,11 @@ git remote rename nombre_anterio nombre_nuevo
 # Para remover un repositorio remoto.
 git remote remove <shorename>
 
+# Para agregar un repositirio remoto.
+git remote add repositirio_remoto git://github.com/path/project.github
+git fetch repositirio_remoto
+git checkout -b branch_a_crear repositorio_remoto/branch_remoto
+
 
 # ***************+
 # TAGS
@@ -150,7 +158,7 @@ git tag
 # (Annotated Tag) Para crear un tag.
 git tag -a v1.4 -m "Mensaje"
 
-# (Lightweight) Para crear un tag no se agregan: -a, -m, -s.
+# (Lightweight) Para crear un tag (no se agregan: -a, -m, -s).
 git tag v1.4-lw
 
 # Para tag un commit pasado, para mostrar checksums (git log --pretty=oneline).
@@ -302,6 +310,8 @@ git rebase master
 # Copiar los cambios del branch server al final del branch master y hacer un commit.
 git rebase master server
 
+# Traer un commit en especifico al master (como un rebase pero trayendo un commit especifico).
+git cherry-pick numero_de_commit_a_traer
 
 # Generar un patch, compando el ultimo commit local vs el branch remoto.
 # Esto crea archivos .patch con los cambios para ser aplicados en el repositorio remoto.
@@ -320,3 +330,6 @@ git am 0001-limit-----.patch
 # Si el comando git am marca conflicto se debe solucionar el conflicto, pasar el archivo a stage y
 # ejecutar git am --resovled
 git am --resolved
+
+# Mostrar el tag anterior, seguido del nuemero de commites posteriores y el sha-1 del ultimo commit.
+git describe master
