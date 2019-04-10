@@ -333,3 +333,12 @@ git am --resolved
 
 # Mostrar el tag anterior, seguido del nuemero de commites posteriores y el sha-1 del ultimo commit.
 git describe master
+
+# Crea un archivo con el codigo de la ultima version de un commit.
+git archive master --prefix='project/' | `git describe master`.tar.gz
+
+# Crear un archivo zip con el codigo fuente.
+git archive master --prefix='project/' --format=zip > `git describe master`.zip
+
+# Muestra un resumen por usuario de los ultimos commits no merges despues de la version v1.0.1
+git shortlog --no-merges master --not v1.0.1
