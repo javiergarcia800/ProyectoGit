@@ -348,3 +348,6 @@ git archive master --prefix='project/' --format=zip > `git describe master`.zip
 
 # Muestra un resumen por usuario de los ultimos commits no merges despues de la version v1.0.1
 git shortlog --no-merges master --not v1.0.1
+
+
+==========
