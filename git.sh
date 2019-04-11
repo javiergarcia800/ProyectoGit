@@ -294,6 +294,12 @@ git pull
 # Generalmente es mejor usar fetch y merge explicitamnte, git pull puede ser confuso.
 git pull
 
+# Para guardar el directorio de trabajo (los cambios) sin agregarlos al stage.
+# Para despues cambiar de branch.
+git stash
+
+# Mostrar cambios guardados con stash.
+git stash list
 
 # ****************
 # REBASE
