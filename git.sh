@@ -282,7 +282,7 @@ git push repositorio_remoto branch(master)
 git push repositirio_remoto branch_local:branch_remoto
 
 # Para subir un branch al repositorio remoto(origin)
-git push -u origin featureA
+git push -u origin master
 
 # ************+
 # PULL
