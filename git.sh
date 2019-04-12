@@ -353,3 +353,4 @@ git shortlog --no-merges master --not v1.0.1
 ==================
 # Cambio desde github.
 # Cambio desde local......
+# Cambios locales para validar SourceTree.
