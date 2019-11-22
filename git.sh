@@ -224,6 +224,9 @@ git log branch_local..origin/branch_remoto
 # Eliminar un branch
 git branch -d nombre_del_branch_a_eliminar
 
+# Eliminar un branch remoto
+git push -d <remote_name> <branch_name>
+
 # Hacer merge de 2 branches, el merge se hace en el branch actual.
 # Cuando se hace merge de 2 branches distintos, se crea un nuevo commit (merge commit).
 # Si hay conflictos en el merge, se tienen que resolver, hacer git add y commit para terminar el merge.
