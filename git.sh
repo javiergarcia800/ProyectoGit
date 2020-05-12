@@ -1,3 +1,4 @@
+# Prueba versión 2
 # Todos los archivos pueden estar en 2 estados:
 # Tracked   => No modificados, Modificados, en Stage.
 # Untracked => Cualquier archivo que aun no ha estado en Stage.
